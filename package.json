@@ -1,0 +1,42 @@
+{
+  "name": "coursework",
+  "version": "1.0.0",
+  "description": "A program for automating the execution of commands in the terminal",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/app.js",
+    "build": "tsc",
+    "format:fix": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\"",
+    "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
+    "lint": "npm run format:fix && npm run lint:fix"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.5"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "pre-commit": "^1.2.2",
+    "prettier": "2.8.7",
+    "typescript": "^5.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TolyaDeveloper/Harhash-KI-39-coursework.git"
+  },
+  "keywords": [
+    "shell",
+    "automation"
+  ],
+  "author": "tolyaDeveloper",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TolyaDeveloper/Harhash-KI-39-coursework/issues"
+  },
+  "homepage": "https://github.com/TolyaDeveloper/Harhash-KI-39-coursework#readme",
+  "pre-commit": "lint"
+}
