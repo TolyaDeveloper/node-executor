@@ -1,6 +1,6 @@
 import { ChildProcessWithoutNullStreams } from 'child_process'
 
-import { ILoggerService } from '~/logger/logger.service.interface'
+import { ILoggerService } from '../../logger/logger.service.interface'
 import { ICommandExecutor } from './command.executor.interface'
 
 export abstract class CommandExecutor<Input> {
