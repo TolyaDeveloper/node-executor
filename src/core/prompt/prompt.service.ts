@@ -10,4 +10,12 @@ export class PromptService {
 
     return result
   }
+
+  public async select<T>(message: string, choices: string[]) {
+    const { result } = await inquirer.prompt<{ result: T }>([
+      { type: 'list', name: 'result', message, choices }
+    ])
+
+    return result
+  }
 }
