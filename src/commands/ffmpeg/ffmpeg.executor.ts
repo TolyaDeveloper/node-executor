@@ -20,13 +20,20 @@ export class FfmpegExecutor extends CommandExecutor<IFfmpegInput> {
     const width = await this.promptService.input<number>('Width', 'number')
     const height = await this.promptService.input<number>('Height', 'number')
     const path = await this.promptService.input<string>('Path to file')
-    const name = await this.promptService.input<string>('Name')
+    const outputName = await this.promptService.input<string>('Output name')
+    const outputFormat = await this.promptService.input<string>('Output format')
 
-    return { width, height, path, name }
+    return { width, height, path, outputName, outputFormat }
   }
 
-  protected build({ width, height, path, name }: IFfmpegInput): ICommandFfmpeg {
-    const output = this.fileService.getFilePath(path, name, 'mp4')
+  protected build({
+    width,
+    height,
+    path,
+    outputName,
+    outputFormat
+  }: IFfmpegInput): ICommandFfmpeg {
+    const output = this.fileService.getFilePath(path, outputName, outputFormat)
     const args = new FfmpegBuilder()
       .input(path)
       .setVideoSize(width, height)
