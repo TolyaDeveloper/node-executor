@@ -4,7 +4,8 @@ export interface IFfmpegInput {
   width: number
   height: number
   path: string
-  name: string
+  outputName: string
+  outputFormat: string
 }
 
 export interface ICommandFfmpeg extends ICommandExecutor {
