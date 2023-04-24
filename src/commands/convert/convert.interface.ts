@@ -1,6 +1,6 @@
 import { ICommandExecutor } from '../../core/executor/command.executor.interface'
 
-export interface IInkscapeInput {
+export interface IConvertInput {
   path: string
   width: number
   height: number
@@ -8,6 +8,6 @@ export interface IInkscapeInput {
   outputFormat: string
 }
 
-export interface ICommandInkscape extends ICommandExecutor {
+export interface ICommandConvert extends ICommandExecutor {
   output: string
 }

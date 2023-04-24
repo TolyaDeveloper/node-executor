@@ -1,14 +1,14 @@
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
 
 import { CommandExecutor } from '../../core/executor/command.executor'
-import { ICommandInkscape, IInkscapeInput } from './inkscape.interface'
+import { ICommandConvert, IConvertInput } from './convert.interface'
 import { ILoggerService } from '../../logger/logger.service.interface'
 import { PromptService } from '../../core/prompt/prompt.service'
-import { InkscapeBuilder } from './inkscape.builder'
+import { ConvertBuilder } from './convert.builder'
 import { StreamHandler } from '../../core/handlers/stream.handler'
 import { FilesService } from '../../core/files/files.service'
 
-export class InkscapeExecutor extends CommandExecutor<IInkscapeInput> {
+export class ConvertExecutor extends CommandExecutor<IConvertInput> {
   private fileService: FilesService = new FilesService()
   private promptService: PromptService = new PromptService()
 
@@ -16,7 +16,7 @@ export class InkscapeExecutor extends CommandExecutor<IInkscapeInput> {
     super(logger)
   }
 
-  protected async prompt(): Promise<IInkscapeInput> {
+  protected async prompt(): Promise<IConvertInput> {
     const path = await this.promptService.input<string>('Path', 'input')
     const width = await this.promptService.input<number>('Width', 'number')
     const height = await this.promptService.input<number>('Height', 'number')
@@ -32,24 +32,24 @@ export class InkscapeExecutor extends CommandExecutor<IInkscapeInput> {
     outputName,
     path,
     width
-  }: IInkscapeInput): ICommandInkscape {
+  }: IConvertInput): ICommandConvert {
     const output = this.fileService.getFilePath(path, outputName, outputFormat)
-    const args = new InkscapeBuilder()
+    const args = new ConvertBuilder()
       .setImageSize(width, height)
       .input(path)
       .output(output)
 
-    return { command: 'inkscape', args, output }
+    return { command: 'convert', args, output }
   }
 
   protected spawn({
     args,
     command,
     output
-  }: ICommandInkscape): ChildProcessWithoutNullStreams {
+  }: ICommandConvert): ChildProcessWithoutNullStreams {
     this.fileService.deleteFileIfExists(output)
 
-    return spawn(command, args)
+    return spawn(command, args, { shell: true })
   }
 
   protected processStream(

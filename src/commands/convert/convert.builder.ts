@@ -1,4 +1,4 @@
-export class InkscapeBuilder {
+export class ConvertBuilder {
   private inputPath: string
   private options: string[] = []
 
@@ -11,8 +11,7 @@ export class InkscapeBuilder {
   }
 
   setImageSize(width: number, height: number): this {
-    this.options.push(`--export-width=${width}`)
-    this.options.push(`--export-height=${height}`)
+    this.options.push(`-size ${width}x${height}`)
 
     return this
   }
@@ -22,11 +21,7 @@ export class InkscapeBuilder {
       throw new Error('Input path is not set!')
     }
 
-    const args: string[] = [
-      this.inputPath,
-      ...this.options,
-      `--export-filename=${outputPath}`
-    ]
+    const args: string[] = [...this.options, this.inputPath, outputPath]
 
     return args
   }
