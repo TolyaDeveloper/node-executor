@@ -14,10 +14,10 @@ export class FilesService {
 
   public getFilePath(path: string, name: string, ext: string): string {
     if (!isAbsolute(path)) {
-      path = join(__dirname + '/' + path)
+      path = join(__dirname, path)
     }
 
-    return join(dirname(path) + '/' + name + '.' + ext)
+    return join(dirname(path), name + '.' + ext)
   }
 
   public async deleteFileIfExists(path: string) {
