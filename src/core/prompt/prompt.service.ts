@@ -18,4 +18,12 @@ export class PromptService {
 
     return result
   }
+
+  public async checkbox<T>(message: string, choices: string[]) {
+    const { result } = await inquirer.prompt<{ result: T }>([
+      { type: 'checkbox', name: 'result', message, choices }
+    ])
+
+    return result
+  }
 }

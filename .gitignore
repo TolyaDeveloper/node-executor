@@ -4,3 +4,5 @@
 tsconfig.tsbuildinfo
 *.mp4
 *.mov
+*.svg
+*.jpg
