@@ -1,38 +1,38 @@
-# Програма для автоматизації виконання команд в терміналі
+# The program for automating the execution of commands in the terminal
 
 ---
 
-## Опис
+## Description
 
-Під час роботи часто виникають такі завдання, які повторюються - відповідно потребують певної автоматизації.
-Як на мене не дуже зручно постійно лізти у документацію і нагадувати собі які аргументи у тої чи іншої команди.
+During work, there are often recurring tasks that require automation.
+Personally, I find it inconvenient to constantly refer to documentation to remind myself of the arguments for various commands.
 
-Щодо терміналу, то це будь-який термінал (адже програмка буде кросплатформенною).
+Regarding the terminal, it could be any terminal (since the program will be cross-platform).
 
-Нехай буде запуск програми (програма буде написана на node.js) в шелі zsh:
+Let's say it's running a program (the program will be written in Node.js) in the zsh shell:
 `node index.js`
 
-Далі з'являються опції:
-_"Яку команду ви хочете виконати"_
+Then, options appear:
+_"What command do you want to execute"_
 
 - ffmpeg
 - ansible
 - man
 
-Вибираємо наприклад **ffmpeg**
-Тепер зявляються питання щодо цієї команди, наприклад
+Choose **ffmpeg**
+Now, questions arise about this command, for example:
 
-- width: <поле для вводу>
-- height: <поле для вводу>
-- inputName: <поле для вводу>
-- outputName: <поле для вводу>
+- width: <enter here>
+- height: <enter here>
+- inputName: <enter here>
+- outputName: <enter here>
 
-Після введення формується строка: ffmpeg -i `inputName` -s `width`x`height` `outputName`
-Далі запускається child process який також буде виконаний в zsh.
-І виводиться результат.
+After input, a string is formed: ffmpeg -i `inputName` -s `width`x`height` `outputName`
+Then, a child process is launched, which will also be executed in zsh.
+And the result is displayed.
 
-Файл конфігурації буде не доречним, адже кожна команда може мати свою окрему логіку яка має бути описана.
-Також реалізація цією програми **не буде** просто наївною (насправді сама наївна реалізація вийде десь думаю 50 строк коду).
-Тому задля майбутнього **маштабування** будуть використані архітектурні патерни .
+A configuration file wouldn't be suitable since each command may have its own separate logic that needs to be described.
+Also, the implementation of this program **will not be** straightforward (indeed, the most naive implementation will probably be around 50 lines of code).
+Therefore, for future scalability, architectural patterns will be used.
 
-Буде написаний logger-service, prompt-service(введення даних), сервіс роботи з файлами, білдер та executor під кожну команду.
+A logger service, prompt service (for data input), file service, builder, and executor will be implemented for each command.
